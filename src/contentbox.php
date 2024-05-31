@@ -131,7 +131,7 @@ class CONTENTBOX extends Module
 		if (empty( $files_data ) || gettype( $files_data['files'] ) != null)
 			return $result;
 
-		$files = Tools::jsonDecode( $files_data['files'] );
+		$files = json_decode( $files_data['files'] );
 
 		if (empty( $files ))
 			return $result;
@@ -578,7 +578,7 @@ class CONTENTBOX extends Module
 
 		$files_type = gettype( $files_data );
 
-		$files = ( $files_type == 'string' )? Tools::jsonDecode($files_data) : $files_data;
+		$files = ( $files_type == 'string' )? json_decode($files_data) : $files_data;
 
 		$result = array();
 
@@ -798,7 +798,7 @@ class CONTENTBOXModel extends ObjectModel
 
 	public static function setFiles($files_list = null, $id_store = 1, $id_lang = null)
 	{
-		$files_list = Tools::jsonEncode( $files_list );
+		$files_list = json_encode( $files_list );
 		$files = pSQL( $files_list );
 		$id_lang = (int)$id_lang;
 		$id_store = (int)$id_store;
