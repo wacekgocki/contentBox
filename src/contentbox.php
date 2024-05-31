@@ -73,7 +73,7 @@ class CONTENTBOX extends Module
 		if (Shop::isFeatureActive())
 			Shop::setContext(Shop::CONTEXT_ALL);
 
-		if (!parent::install() || !$this->registerHook('header') || !$this->registerHook('footer') || !CONTENTBOXModel::createTables())
+		if (!parent::install() || !$this->registerHook('displayHeader') || !$this->registerHook('displayFooter') || !CONTENTBOXModel::createTables())
 			return false;
 
 		Configuration::updateValue($this->monolanguage_content, 0);
@@ -114,7 +114,7 @@ class CONTENTBOX extends Module
 			return call_user_func_array($method, $args);
 
 		//if head hook: add the css and js files
-		if ($method == 'hookdisplayHeader')
+		if ($method == 'hookDisplayHeader')
 			return $this->hookHeader( $args[0] );
 
 		//check for a call to an hook
